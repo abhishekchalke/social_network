@@ -27,7 +27,7 @@ class LoginApiView(views.APIView):
         missing_fields = [field for field in required_fields if field not in request.data.keys()]
 
         if missing_fields:
-            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=response_status.HTTP_400_BAD_REQUEST)
 
         email = request.data['email'].lower()
         password = request.data['password']
@@ -55,7 +55,7 @@ class SendFriendRequestApiView(views.APIView):
         missing_fields = [field for field in required_fields if field not in request.data.keys()]
 
         if missing_fields:
-            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=response_status.HTTP_400_BAD_REQUEST)
 
         from_user = request.user
         to_user = request.data['name']
@@ -87,7 +87,7 @@ class AcceptFriendRequestApiView(views.APIView):
         missing_fields = [field for field in required_fields if field not in request.data.keys()]
 
         if missing_fields:
-            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=response_status.HTTP_400_BAD_REQUEST)
 
         from_user = request.user
         to_user = request.data['name']
@@ -120,7 +120,7 @@ class RejectFriendRequestApiView(views.APIView):
         missing_fields = [field for field in required_fields if field not in request.data.keys()]
 
         if missing_fields:
-            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=response_status.HTTP_400_BAD_REQUEST)
 
         from_user = request.user
         to_user = request.data['name']
@@ -183,7 +183,7 @@ class SearchUsersApiView(views.APIView):
         missing_fields = [field for field in required_fields if field not in request.data.keys()]
 
         if missing_fields:
-            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing required fields','missing_fields': missing_fields}, status=response_status.HTTP_400_BAD_REQUEST)
 
         search = request.data['search']
         search_by = request.data['search_by']
