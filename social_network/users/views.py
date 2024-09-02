@@ -97,8 +97,9 @@ class AcceptFriendRequestApiView(views.APIView):
         else:
             return Response({"error": "User not found."}, status=response_status.HTTP_404_NOT_FOUND)
 
-        if models.FriendRequest.objects.filter(from_user=from_user, to_user=to_user).exists():
-            friend_req = models.FriendRequest.objects.filter(from_user=from_user, to_user=to_user)[0]
+
+        if models.FriendRequest.objects.filter(from_user=to_user, to_user=from_user).exists():
+            friend_req = models.FriendRequest.objects.filter(from_user=to_user, to_user=from_user)[0]
 
             if friend_req.status == 'pending':
                 friend_req.status = 'accepted'
@@ -130,12 +131,12 @@ class RejectFriendRequestApiView(views.APIView):
         else:
             return Response({"error": "User not found."}, status=response_status.HTTP_404_NOT_FOUND)
 
-        if models.FriendRequest.objects.filter(from_user=from_user, to_user=to_user).exists():
-            friend_req = models.FriendRequest.objects.filter(from_user=from_user, to_user=to_user)[0]
+        if models.FriendRequest.objects.filter(from_user=to_user, to_user=from_user).exists():
+            friend_req = models.FriendRequest.objects.filter(from_user=to_user, to_user=from_user)[0]
 
             if friend_req.status == 'pending':
                 friend_req.status = 'rejected'
-                friend_re.save()
+                friend_req.save()
                 return Response({"message": "Friend request rejected"}, status=response_status.HTTP_200_OK)
             else:
                 return Response({"message": "Friend request has already been %s" % friend_req.status}, status=response_status.HTTP_200_OK)
@@ -149,11 +150,16 @@ class ListFriendsApiView(views.APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        friends = models.FriendRequest.objects.filter(from_user=request.user, status='accepted')
+        from_friends = models.FriendRequest.objects.filter(from_user=request.user, status='accepted')
+        to_friends = models.FriendRequest.objects.filter(to_user=request.user, status='accepted')
 
-        if friends:
-            friends_srz = serializer.FriendRequesSerializer(friends, many=True)
-            return Response(friends_srz.data, status=response_status.HTTP_200_OK)
+        from_friends_srz = serializer.FromFriendsSerializer(from_friends, many=True)
+        to_friends_srz = serializer.ToFriendsSerializer(to_friends, many=True)
+
+        friends_srz_data = from_friends_srz.data + to_friends_srz.data
+
+        if friends_srz_data:
+            return Response(friends_srz_data, status=response_status.HTTP_200_OK)
         else:
             return Response({"message": "There are no friends"}, status=response_status.HTTP_404_NOT_FOUND)
 
@@ -164,7 +170,7 @@ class ListFriendRequestsApiView(views.APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        friend_reqs = models.FriendRequest.objects.filter(from_user=request.user, status='pending')
+        friend_reqs = models.FriendRequest.objects.filter(to_user=request.user, status='pending')
 
         if friend_reqs:
             friend_reqs_srz = serializer.FriendRequesSerializer(friend_reqs, many=True)
