@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "72c75905-131e-4fb8-8ddd-0b6f85b08dbe",
+		"name": "social_network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37327790"
+	},
+	"item": [
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"akash@gmail.com\",\n    \"password\":\"qwaszxT\",\n    \"name\":\"akash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/signup/"
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser_1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"akash@gmail.com\",\n    \"password\":\"qwaszxT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "Search_users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token fd9da50f5a9e137175a9034c663ce48205582400",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"search\":\"g\",\n    \"search_by\":\"name\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/search/users/"
+			},
+			"response": []
+		},
+		{
+			"name": "SendFriendRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token fd9da50f5a9e137175a9034c663ce48205582400",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"ashrit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/friend_request/send/"
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser_2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"girish@gmail.com\",\n    \"password\":\"qwaszxG\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "ListFriendRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 8aeafcaaa688dc94a801557a5ab501735e0f2f70",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/list/friend_requests/"
+			},
+			"response": []
+		},
+		{
+			"name": "AcceptFriendRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 8aeafcaaa688dc94a801557a5ab501735e0f2f70",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"akash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/friend_request/accept/"
+			},
+			"response": []
+		},
+		{
+			"name": "RejectFriendRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 64d3e31ecc77ab0025418ed1df69134ec5372f69",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"akash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/friend_request/reject/"
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser_3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 64d3e31ecc77ab0025418ed1df69134ec5372f69",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"ashrit@gmail.com\",\n    \"password\":\"qwaszxA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "ListFriends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token fd9da50f5a9e137175a9034c663ce48205582400",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/users/api/list/friends/"
+			},
+			"response": []
+		}
+	]
+}

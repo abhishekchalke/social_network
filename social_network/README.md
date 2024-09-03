@@ -52,7 +52,7 @@ A Postman collection is provided to test the API endpoints easily.
     - Open Postman.
     - Click on "Import" in the top left corner.
     - Select "Upload Files".
-    - Choose the `social-network-api.postman_collection.json` file from the root directory of the project.
+    - Choose the `social-network.postman_collection.json` file from the root directory of the project.
     - Click "Import".
 
 2. **Use the requests in the collection to test the API**.
